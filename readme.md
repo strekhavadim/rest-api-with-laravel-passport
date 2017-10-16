@@ -36,7 +36,7 @@ h. Get All users:
     [GET] /api/users
 i. Get specific user information (with likes):
 
-    [GET] /api/user/{USER_ID}
+    [GET] /api/users/{USER_ID}
 j. Like User:
 
-    [POST] /api/user/{USER_ID}/like
+    [POST] /api/users/{USER_ID}/like
