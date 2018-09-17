@@ -32,11 +32,18 @@ class User extends Authenticatable
     ];
 
     public function scopeFiltered($query){
-		$query->select('name', 'last_name');
+		$query->select('id', 'name', 'last_name', 'email', 'profile_image');
     }
 
     public function getRegisteredAtAttribute(){
     	return $this->attributes['registered_at'] = strtolower((new Carbon($this->created_at))->format('d M Y'));
+    }
+
+    public function getProfileImageAttribute(){
+        if(trim($this->attributes['profile_image'])){
+            return asset('avatars/'.trim($this->attributes['profile_image']));
+        }
+        return '';
     }
 
 	public function likes()

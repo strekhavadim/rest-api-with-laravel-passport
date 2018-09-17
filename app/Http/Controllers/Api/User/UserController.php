@@ -34,8 +34,8 @@ class UserController extends Controller
 			$this->validate($request, [
 				'name' => 'string|max:255',
 				'last_name' => 'string|max:255',
-				'email' => 'string|email|max:255|unique:users,email',
-				'password' => 'string|min:6|confirmed',
+				'email' => 'string|email|max:255|unique:users,email,'.Auth::id(),
+				'password' => 'nullable|string|min:6|confirmed',
 			]);
 
 			if(request('name')) {
@@ -47,8 +47,8 @@ class UserController extends Controller
 			if(request('email')) {
 				$user->email = request('email');
 			}
-			if(request('password')) {
-				$user->password = request('password');
+			if(request('password') && trim(request('password'))) {
+				$user->password = bcrypt(request('password'));
 			}
 			$user->save();
 
@@ -96,7 +96,10 @@ class UserController extends Controller
 					$user->save();
 				}
 			}
-			return $user;
+			if(trim($user->profile_image)) {
+                return asset('avatars/'.trim($user->profile_image));
+            }
+            return '';
 		}else{
 			return response()->json([], 403);
 		}
