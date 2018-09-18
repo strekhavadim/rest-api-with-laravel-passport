@@ -1,11 +1,11 @@
 ## Деплой
 
 - загрузить проект
-- выполнить **composer update**
+- выполнить **composer install**
 - скопировать **.env.example** в **.env** и внести информацию о базе данных
 - выполнить **php artisan key:generate**
 - запустить миграцию **php artisan migrate**
-- создать запись о OAuth-клиенте **php artisan passport:client --password**
+- создать запись о OAuth-клиенте **php artisan passport:install**
 
 ## Доступные методы
 
