@@ -6,6 +6,7 @@
 - выполнить **php artisan key:generate**
 - запустить миграцию **php artisan migrate**
 - создать запись о OAuth-клиенте **php artisan passport:install**
+- запустить **php artisan serve**
 
 ## Доступные методы
 
